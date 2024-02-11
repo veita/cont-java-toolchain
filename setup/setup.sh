@@ -12,9 +12,9 @@ source /etc/profile
 
 # install and configure JDK
 mkdir -p /java/tmp
-tar -C /java/tmp -xzf /java/jdk17.tar.gz
-mv /java/tmp/* /java/jdk17
-rm /java/jdk17.tar.gz
+tar -C /java/tmp -xzf /java/jdk.tar.gz
+mv /java/tmp/* /java/jdk
+rm /java/jdk.tar.gz
 rmdir /java/tmp
 
 # install Gradle
