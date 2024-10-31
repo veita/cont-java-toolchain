@@ -4,7 +4,7 @@ set -ex
 
 cd "${0%/*}"
 
-JDK_URL="https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.2%2B13/OpenJDK21U-jdk_x64_linux_hotspot_21.0.2_13.tar.gz"
+JDK_URL="https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.5%2B11/OpenJDK21U-jdk_x64_linux_hotspot_21.0.5_11.tar.gz"
 JDK_ARCHIVE="$(basename $JDK_URL)"
 
 cd tmp
@@ -12,7 +12,7 @@ cd tmp
 cd ..
 
 
-GRADLE_URL="https://services.gradle.org/distributions/gradle-8.6-bin.zip"
+GRADLE_URL="https://services.gradle.org/distributions/gradle-8.10.2-bin.zip"
 GRADLE_ARCHIVE="$(basename $GRADLE_URL)"
 
 cd tmp
@@ -20,7 +20,7 @@ cd tmp
 cd ..
 
 
-MAVEN_URL="https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz"
+MAVEN_URL="https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz"
 MAVEN_ARCHIVE="$(basename $MAVEN_URL)"
 
 cd tmp
@@ -28,7 +28,7 @@ cd tmp
 cd ..
 
 
-ANT_URL="https://dlcdn.apache.org//ant/binaries/apache-ant-1.10.14-bin.tar.gz"
+ANT_URL="https://dlcdn.apache.org//ant/binaries/apache-ant-1.10.15-bin.tar.gz"
 ANT_ARCHIVE="$(basename $ANT_URL)"
 
 cd tmp
