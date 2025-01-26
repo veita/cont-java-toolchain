@@ -4,7 +4,7 @@ set -ex
 
 cd "${0%/*}"
 
-JDK_URL="https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.5%2B11/OpenJDK21U-jdk_x64_linux_hotspot_21.0.5_11.tar.gz"
+JDK_URL="https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.6%2B7/OpenJDK21U-jdk_x64_linux_hotspot_21.0.6_7.tar.gz"
 JDK_ARCHIVE="$(basename $JDK_URL)"
 
 cd tmp
@@ -12,7 +12,7 @@ cd tmp
 cd ..
 
 
-GRADLE_URL="https://services.gradle.org/distributions/gradle-8.10.2-bin.zip"
+GRADLE_URL="https://services.gradle.org/distributions/gradle-8.12.1-bin.zip"
 GRADLE_ARCHIVE="$(basename $GRADLE_URL)"
 
 cd tmp
