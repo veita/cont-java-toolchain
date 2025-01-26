@@ -17,6 +17,13 @@ mv /java/tmp/* /java/jdk
 rm /java/jdk.tar.gz
 rmdir /java/tmp
 
+# install Groovy
+mkdir -p /java/tmp
+unzip /java/groovy.zip -d /java/tmp
+mv /java/tmp/* /java/groovy
+rm /java/groovy.zip
+rmdir /java/tmp
+
 # install Gradle
 mkdir -p /java/tmp
 unzip /java/gradle.zip -d /java/tmp

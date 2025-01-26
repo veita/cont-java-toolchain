@@ -12,6 +12,14 @@ cd tmp
 cd ..
 
 
+GROOVY_URL="https://groovy.jfrog.io/artifactory/dist-release-local/groovy-zips/apache-groovy-binary-4.0.25.zip"
+GROOVY_ARCHIVE="$(basename $GROOVY_URL)"
+
+cd tmp
+[ -e ${GROOVY_ARCHIVE} ] || curl -L $GROOVY_URL -o ${GROOVY_ARCHIVE} || exit 1
+cd ..
+
+
 GRADLE_URL="https://services.gradle.org/distributions/gradle-8.12.1-bin.zip"
 GRADLE_ARCHIVE="$(basename $GRADLE_URL)"
 
@@ -41,6 +49,7 @@ CONT=$(buildah from veita/debian-base:bookworm)
 buildah copy $CONT etc/ /etc
 buildah copy $CONT setup/ /setup
 buildah copy $CONT tmp/${JDK_ARCHIVE} /java/jdk.tar.gz
+buildah copy $CONT tmp/${GROOVY_ARCHIVE} /java/groovy.zip
 buildah copy $CONT tmp/${GRADLE_ARCHIVE} /java/gradle.zip
 buildah copy $CONT tmp/${MAVEN_ARCHIVE} /java/maven.tar.gz
 buildah copy $CONT tmp/${ANT_ARCHIVE} /java/ant.tar.gz
