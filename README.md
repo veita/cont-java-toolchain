@@ -1,5 +1,12 @@
 # Java Build Toolchain
 
+Includes
+* JDK
+* Groovy
+* Gradle
+* Maven
+* Apache Ant
+
 ## Building the image
 
 ```bash
