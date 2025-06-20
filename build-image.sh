@@ -4,43 +4,52 @@ set -ex
 
 cd "${0%/*}"
 
-JDK_URL="https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.6%2B7/OpenJDK21U-jdk_x64_linux_hotspot_21.0.6_7.tar.gz"
-JDK_ARCHIVE="$(basename $JDK_URL)"
+# JDK
+VERSION="21.0.7+6"
+IMAGE_TYPE="jdk"
+OS="linux"
+ARCHITECTURE="x64"
+RELEASE_NAME="jdk-${VERSION}"
+
+JDK_URL="https://api.adoptium.net/v3/binary/version/${RELEASE_NAME}/${OS}/${ARCHITECTURE}/${IMAGE_TYPE}/hotspot/normal/eclipse"
+JDK_SIG_URL="https://api.adoptium.net/v3/signature/version/${RELEASE_NAME}/${OS}/${ARCHITECTURE}/${IMAGE_TYPE}/hotspot/normal/eclipse"
+JDK_ARCHIVE="${RELEASE_NAME}-${IMAGE_TYPE}-${OS}-${ARCHITECTURE}.tar.gz"
 
 cd tmp
-[ -e ${JDK_ARCHIVE} ] || curl -L $JDK_URL -o ${JDK_ARCHIVE} || exit 1
+[ -e ${JDK_ARCHIVE} ] || curl -L --fail $JDK_URL -o ${JDK_ARCHIVE} || exit 1
 cd ..
 
-
-GROOVY_URL="https://groovy.jfrog.io/artifactory/dist-release-local/groovy-zips/apache-groovy-binary-4.0.25.zip"
+# Groovy
+GROOVY_URL="https://groovy.jfrog.io/artifactory/dist-release-local/groovy-zips/apache-groovy-binary-4.0.27.zip"
 GROOVY_ARCHIVE="$(basename $GROOVY_URL)"
 
 cd tmp
-[ -e ${GROOVY_ARCHIVE} ] || curl -L $GROOVY_URL -o ${GROOVY_ARCHIVE} || exit 1
+[ -e ${GROOVY_ARCHIVE} ] || curl -L --fail $GROOVY_URL -o ${GROOVY_ARCHIVE} || exit 1
 cd ..
 
-
-GRADLE_URL="https://services.gradle.org/distributions/gradle-8.12.1-bin.zip"
+# Gradle
+GRADLE_URL="https://services.gradle.org/distributions/gradle-8.14.2-bin.zip"
 GRADLE_ARCHIVE="$(basename $GRADLE_URL)"
 
 cd tmp
-[ -e ${GRADLE_ARCHIVE} ] || curl -L $GRADLE_URL -o ${GRADLE_ARCHIVE} || exit 1
+[ -e ${GRADLE_ARCHIVE} ] || curl -L --fail $GRADLE_URL -o ${GRADLE_ARCHIVE} || exit 1
 cd ..
 
-
-MAVEN_URL="https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz"
+# Maven
+MVN_VERSION="3.9.10"
+MAVEN_URL="https://dlcdn.apache.org/maven/maven-3/${MVN_VERSION}/binaries/apache-maven-${MVN_VERSION}-bin.tar.gz"
 MAVEN_ARCHIVE="$(basename $MAVEN_URL)"
 
 cd tmp
-[ -e ${MAVEN_ARCHIVE} ] || curl -L $MAVEN_URL -o ${MAVEN_ARCHIVE} || exit 1
+[ -e ${MAVEN_ARCHIVE} ] || curl -L --fail $MAVEN_URL -o ${MAVEN_ARCHIVE} || exit 1
 cd ..
 
-
+# Ant
 ANT_URL="https://dlcdn.apache.org//ant/binaries/apache-ant-1.10.15-bin.tar.gz"
 ANT_ARCHIVE="$(basename $ANT_URL)"
 
 cd tmp
-[ -e ${ANT_ARCHIVE} ] || curl -L $ANT_URL -o ${ANT_ARCHIVE} || exit 1
+[ -e ${ANT_ARCHIVE} ] || curl -L --fail $ANT_URL -o ${ANT_ARCHIVE} || exit 1
 cd ..
 
 
@@ -57,7 +66,13 @@ buildah run $CONT /bin/bash /setup/setup.sh
 buildah run $CONT rm -rf /setup
 
 buildah config --workingdir '/qsk' $CONT
-buildah config --cmd '/bin/bash --login' $CONT
+
+buildah config --env JAVA_HOME=/java/jdk $CONT
+buildah config --env GROOVY_HOME=/java/groovy $CONT
+buildah config --env GRADLE_HOME=/java/gradle $CONT
+buildah config --env ANT_HOME=/java/ant $CONT
+buildah config --env MVN_HOME=/java/maven $CONT
+buildah config --env PATH=/java/jdk/bin:/java/groovy/bin:/java/gradle/bin:/java/maven/bin:/java/ant/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin $CONT
 
 buildah config --author "Alexander Veit" $CONT
 buildah config --label commit=$(git describe --always --tags --dirty=-dirty) $CONT

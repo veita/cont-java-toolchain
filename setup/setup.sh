@@ -6,7 +6,7 @@ export DEBIAN_FRONTEND=noninteractive
 
 apt-get update -qy
 apt-get upgrade -qy
-apt-get install -qy git git-lfs mc
+apt-get install -qy git git-lfs mc binutils
 
 source /etc/profile
 
@@ -45,6 +45,7 @@ mv /java/tmp/* /java/ant
 rm /java/ant.tar.gz
 rmdir /java/tmp
 
+java -Xshare:dump
 
 # cleanup
 source /setup/cleanup-image.sh

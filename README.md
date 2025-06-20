@@ -20,7 +20,7 @@ cd java-toolchain
 Run the container, e.g. with
 
 ```bash
-podman run --name java-toolchain --hostname java-toolchain --privileged -it --rm -v=./tmp:/qsk:rw -v=$HOME/.ssh:/root/.ssh:ro localhost/java-toolchain
+podman run --name java-toolchain --hostname java-toolchain --privileged -it --rm -v=./tmp:/qsk:rw -v=$HOME/.ssh:/root/.ssh:ro java-toolchain
 
 podman start --interactive --attach java-toolchain
 ```
