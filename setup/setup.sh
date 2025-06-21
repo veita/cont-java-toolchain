@@ -8,6 +8,12 @@ apt-get update -qy
 apt-get upgrade -qy
 apt-get install -qy git git-lfs mc binutils
 
+# add custom trusted CA certificates
+if ls /setup/trusted-ca-certificates/*.crt &> /dev/null ; then
+    cp /setup/trusted-ca-certificates/*.crt /usr/local/share/ca-certificates/
+    /usr/sbin/update-ca-certificates
+fi
+
 source /etc/profile
 
 # install and configure JDK
