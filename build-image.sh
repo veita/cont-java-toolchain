@@ -53,7 +53,7 @@ cd tmp
 cd ..
 
 
-CONT=$(buildah from veita/debian-base:bookworm)
+CONT=$(buildah from veita/debian-base:trixie)
 
 buildah copy $CONT etc/ /etc
 buildah copy $CONT setup/ /setup
