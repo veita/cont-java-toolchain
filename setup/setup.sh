@@ -1,12 +1,12 @@
 #!/bin/bash
 
-set -ex
+set -exuo pipefail
 
 export DEBIAN_FRONTEND=noninteractive
 
 apt-get update -qy
 apt-get upgrade -qy
-apt-get install -qy git git-lfs mc binutils
+apt-get install -qy git git-lfs mc binutils lsof procps jattach
 
 # add custom trusted CA certificates
 if ls /setup/trusted-ca-certificates/*.crt &> /dev/null ; then
