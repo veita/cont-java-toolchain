@@ -5,7 +5,7 @@ set -ex
 cd "${0%/*}"
 
 # JDK
-VERSION="21.0.8+9"
+VERSION="21.0.9+10"
 IMAGE_TYPE="jdk"
 OS="linux"
 ARCHITECTURE="x64"
@@ -20,7 +20,7 @@ cd tmp
 cd ..
 
 # Groovy
-GROOVY_URL="https://groovy.jfrog.io/artifactory/dist-release-local/groovy-zips/apache-groovy-binary-4.0.28.zip"
+GROOVY_URL="https://groovy.jfrog.io/artifactory/dist-release-local/groovy-zips/apache-groovy-binary-5.0.3.zip"
 GROOVY_ARCHIVE="$(basename $GROOVY_URL)"
 
 cd tmp
@@ -28,7 +28,7 @@ cd tmp
 cd ..
 
 # Gradle
-GRADLE_URL="https://services.gradle.org/distributions/gradle-9.0.0-bin.zip"
+GRADLE_URL="https://services.gradle.org/distributions/gradle-9.2.1-bin.zip"
 GRADLE_ARCHIVE="$(basename $GRADLE_URL)"
 
 cd tmp
