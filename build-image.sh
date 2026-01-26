@@ -5,12 +5,11 @@ set -ex
 cd "${0%/*}"
 
 # JDK
-VERSION="21.0.9+10"
+JDK_VERSION="21.0.10+7"
 IMAGE_TYPE="jdk"
 OS="linux"
 ARCHITECTURE="x64"
-RELEASE_NAME="jdk-${VERSION}"
-
+RELEASE_NAME="jdk-${JDK_VERSION}"
 JDK_URL="https://api.adoptium.net/v3/binary/version/${RELEASE_NAME}/${OS}/${ARCHITECTURE}/${IMAGE_TYPE}/hotspot/normal/eclipse"
 JDK_SIG_URL="https://api.adoptium.net/v3/signature/version/${RELEASE_NAME}/${OS}/${ARCHITECTURE}/${IMAGE_TYPE}/hotspot/normal/eclipse"
 JDK_ARCHIVE="${RELEASE_NAME}-${IMAGE_TYPE}-${OS}-${ARCHITECTURE}.tar.gz"
@@ -20,7 +19,8 @@ cd tmp
 cd ..
 
 # Groovy
-GROOVY_URL="https://groovy.jfrog.io/artifactory/dist-release-local/groovy-zips/apache-groovy-binary-5.0.3.zip"
+GROOVY_VERSION="5.0.4"
+GROOVY_URL="https://groovy.jfrog.io/artifactory/dist-release-local/groovy-zips/apache-groovy-binary-${GROOVY_VERSION}.zip"
 GROOVY_ARCHIVE="$(basename $GROOVY_URL)"
 
 cd tmp
@@ -28,7 +28,8 @@ cd tmp
 cd ..
 
 # Gradle
-GRADLE_URL="https://services.gradle.org/distributions/gradle-9.2.1-bin.zip"
+GRADLE_VERSION="9.3.0"
+GRADLE_URL="https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" 
 GRADLE_ARCHIVE="$(basename $GRADLE_URL)"
 
 cd tmp
@@ -36,7 +37,7 @@ cd tmp
 cd ..
 
 # Maven
-MVN_VERSION="3.9.11"
+MVN_VERSION="3.9.12"
 MAVEN_URL="https://dlcdn.apache.org/maven/maven-3/${MVN_VERSION}/binaries/apache-maven-${MVN_VERSION}-bin.tar.gz"
 MAVEN_ARCHIVE="$(basename $MAVEN_URL)"
 
@@ -45,7 +46,8 @@ cd tmp
 cd ..
 
 # Ant
-ANT_URL="https://dlcdn.apache.org//ant/binaries/apache-ant-1.10.15-bin.tar.gz"
+ANT_VERSION="1.10.15"
+ANT_URL="https://dlcdn.apache.org//ant/binaries/apache-ant-${ANT_VERSION}-bin.tar.gz"
 ANT_ARCHIVE="$(basename $ANT_URL)"
 
 cd tmp
