@@ -28,7 +28,7 @@ cd tmp
 cd ..
 
 # Gradle
-GRADLE_VERSION="9.3.0"
+GRADLE_VERSION="9.4.0"
 GRADLE_URL="https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" 
 GRADLE_ARCHIVE="$(basename $GRADLE_URL)"
 
@@ -37,7 +37,7 @@ cd tmp
 cd ..
 
 # Maven
-MVN_VERSION="3.9.12"
+MVN_VERSION="3.9.13"
 MAVEN_URL="https://dlcdn.apache.org/maven/maven-3/${MVN_VERSION}/binaries/apache-maven-${MVN_VERSION}-bin.tar.gz"
 MAVEN_ARCHIVE="$(basename $MAVEN_URL)"
 
