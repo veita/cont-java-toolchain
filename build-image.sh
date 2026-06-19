@@ -19,7 +19,7 @@ cd tmp
 cd ..
 
 # Groovy
-GROOVY_VERSION="5.0.5"
+GROOVY_VERSION="5.0.6"
 GROOVY_URL="https://groovy.jfrog.io/artifactory/dist-release-local/groovy-zips/apache-groovy-binary-${GROOVY_VERSION}.zip"
 GROOVY_ARCHIVE="$(basename $GROOVY_URL)"
 
@@ -28,7 +28,7 @@ cd tmp
 cd ..
 
 # Gradle
-GRADLE_VERSION="9.5.0"
+GRADLE_VERSION="9.6.0"
 GRADLE_URL="https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" 
 GRADLE_ARCHIVE="$(basename $GRADLE_URL)"
 
@@ -37,7 +37,7 @@ cd tmp
 cd ..
 
 # Maven
-MVN_VERSION="3.9.15"
+MVN_VERSION="3.9.16"
 MAVEN_URL="https://dlcdn.apache.org/maven/maven-3/${MVN_VERSION}/binaries/apache-maven-${MVN_VERSION}-bin.tar.gz"
 MAVEN_ARCHIVE="$(basename $MAVEN_URL)"
 
