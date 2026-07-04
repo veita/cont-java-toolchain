@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -ex
+set -exuo pipefail
 
 cd "${0%/*}"
 
@@ -28,8 +28,8 @@ cd tmp
 cd ..
 
 # Gradle
-GRADLE_VERSION="9.6.0"
-GRADLE_URL="https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" 
+GRADLE_VERSION="9.6.1"
+GRADLE_URL="https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip"
 GRADLE_ARCHIVE="$(basename $GRADLE_URL)"
 
 cd tmp
