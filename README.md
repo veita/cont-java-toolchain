@@ -6,6 +6,7 @@ Includes
 * Gradle
 * Maven
 * Apache Ant
+* Git
 
 ## Building the image
 
