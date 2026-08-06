@@ -5,7 +5,7 @@ set -exuo pipefail
 cd "${0%/*}"
 
 # JDK
-JDK_VERSION="21.0.11+10"
+JDK_VERSION="21.0.12+8"
 IMAGE_TYPE="jdk"
 OS="linux"
 ARCHITECTURE="x64"
@@ -19,7 +19,7 @@ cd tmp
 cd ..
 
 # Groovy
-GROOVY_VERSION="5.0.6"
+GROOVY_VERSION="5.0.8"
 GROOVY_URL="https://groovy.jfrog.io/artifactory/dist-release-local/groovy-zips/apache-groovy-binary-${GROOVY_VERSION}.zip"
 GROOVY_ARCHIVE="$(basename $GROOVY_URL)"
 
