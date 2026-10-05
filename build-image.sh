@@ -5,7 +5,7 @@ set -exuo pipefail
 cd "${0%/*}"
 
 # JDK
-JDK_VERSION="21.0.12+8"
+JDK_VERSION="21.0.12.1+1"
 IMAGE_TYPE="jdk"
 OS="linux"
 ARCHITECTURE="x64"
@@ -19,7 +19,7 @@ cd tmp
 cd ..
 
 # Groovy
-GROOVY_VERSION="5.0.8"
+GROOVY_VERSION="6.0.0"
 GROOVY_URL="https://groovy.jfrog.io/artifactory/dist-release-local/groovy-zips/apache-groovy-binary-${GROOVY_VERSION}.zip"
 GROOVY_ARCHIVE="$(basename $GROOVY_URL)"
 
@@ -28,7 +28,7 @@ cd tmp
 cd ..
 
 # Gradle
-GRADLE_VERSION="9.7.0"
+GRADLE_VERSION="9.8.0"
 GRADLE_URL="https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip"
 GRADLE_ARCHIVE="$(basename $GRADLE_URL)"
 
@@ -37,7 +37,7 @@ cd tmp
 cd ..
 
 # Maven
-MVN_VERSION="3.9.16"
+MVN_VERSION="3.10.0"
 MAVEN_URL="https://dlcdn.apache.org/maven/maven-3/${MVN_VERSION}/binaries/apache-maven-${MVN_VERSION}-bin.tar.gz"
 MAVEN_ARCHIVE="$(basename $MAVEN_URL)"
 
@@ -46,7 +46,7 @@ cd tmp
 cd ..
 
 # Ant
-ANT_VERSION="1.10.17"
+ANT_VERSION="1.10.18"
 ANT_URL="https://dlcdn.apache.org//ant/binaries/apache-ant-${ANT_VERSION}-bin.tar.gz"
 ANT_ARCHIVE="$(basename $ANT_URL)"
 
