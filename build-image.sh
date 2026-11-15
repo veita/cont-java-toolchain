@@ -1,34 +1,44 @@
 #!/bin/bash
 
-set -ex
+set -exuo pipefail
 
 cd "${0%/*}"
 
-JDK_URL="https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.10%2B7/OpenJDK17U-jdk_x64_linux_hotspot_17.0.10_7.tar.gz"
-JDK_ARCHIVE="$(basename $JDK_URL)"
+# JDK
+JDK_VERSION="17.0.21+9"
+IMAGE_TYPE="jdk"
+OS="linux"
+ARCHITECTURE="x64"
+RELEASE_NAME="jdk-${JDK_VERSION}"
+JDK_URL="https://api.adoptium.net/v3/binary/version/${RELEASE_NAME}/${OS}/${ARCHITECTURE}/${IMAGE_TYPE}/hotspot/normal/eclipse"
+JDK_SIG_URL="https://api.adoptium.net/v3/signature/version/${RELEASE_NAME}/${OS}/${ARCHITECTURE}/${IMAGE_TYPE}/hotspot/normal/eclipse"
+JDK_ARCHIVE="${RELEASE_NAME}-${IMAGE_TYPE}-${OS}-${ARCHITECTURE}.tar.gz"
 
 cd tmp
 [ -e ${JDK_ARCHIVE} ] || curl -L $JDK_URL -o ${JDK_ARCHIVE} || exit 1
 cd ..
 
-
-GRADLE_URL="https://services.gradle.org/distributions/gradle-8.6-bin.zip"
+# Gradle
+GRADLE_VERSION="8.14.7"
+GRADLE_URL="https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip"
 GRADLE_ARCHIVE="$(basename $GRADLE_URL)"
 
 cd tmp
 [ -e ${GRADLE_ARCHIVE} ] || curl -L $GRADLE_URL -o ${GRADLE_ARCHIVE} || exit 1
 cd ..
 
-
-MAVEN_URL="https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz"
+# Maven
+MVN_VERSION="3.10.1"
+MAVEN_URL="https://dlcdn.apache.org/maven/maven-3/${MVN_VERSION}/binaries/apache-maven-${MVN_VERSION}-bin.tar.gz"
 MAVEN_ARCHIVE="$(basename $MAVEN_URL)"
 
 cd tmp
 [ -e ${MAVEN_ARCHIVE} ] || curl -L $MAVEN_URL -o ${MAVEN_ARCHIVE} || exit 1
 cd ..
 
-
-ANT_URL="https://dlcdn.apache.org//ant/binaries/apache-ant-1.10.14-bin.tar.gz"
+#Ant
+ANT_VERSION="1.10.18"
+ANT_URL="https://dlcdn.apache.org//ant/binaries/apache-ant-${ANT_VERSION}-bin.tar.gz"
 ANT_ARCHIVE="$(basename $ANT_URL)"
 
 cd tmp
