@@ -5,7 +5,7 @@ set -exuo pipefail
 cd "${0%/*}"
 
 # JDK
-JDK_VERSION="21.0.13+9"
+JDK_VERSION="25.0.5+8"
 IMAGE_TYPE="jdk"
 OS="linux"
 ARCHITECTURE="x64"
@@ -79,5 +79,4 @@ buildah config --env PATH=/java/jdk/bin:/java/groovy/bin:/java/gradle/bin:/java/
 buildah config --author "Alexander Veit" $CONT
 buildah config --label commit=$(git describe --always --tags --dirty=-dirty) $CONT
 
-buildah commit --rm $CONT localhost/java-toolchain:latest
-buildah tag localhost/java-toolchain:latest localhost/java-toolchain:21
+buildah commit --rm $CONT localhost/java-toolchain:25
