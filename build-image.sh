@@ -79,5 +79,4 @@ buildah config --env PATH=/java/jdk/bin:/java/groovy/bin:/java/gradle/bin:/java/
 buildah config --author "Alexander Veit" $CONT
 buildah config --label commit=$(git describe --always --tags --dirty=-dirty) $CONT
 
-buildah commit --rm $CONT localhost/java-toolchain:latest
-buildah tag localhost/java-toolchain:latest localhost/java-toolchain:21
+buildah commit --rm $CONT localhost/java-toolchain:21
