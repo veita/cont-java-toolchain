@@ -5,7 +5,7 @@ set -exuo pipefail
 cd "${0%/*}"
 
 # JDK
-JDK_VERSION="25.0.5+8"
+JDK_VERSION="25.0.5.1+2"
 IMAGE_TYPE="jdk"
 OS="linux"
 ARCHITECTURE="x64"
@@ -28,7 +28,7 @@ cd tmp
 cd ..
 
 # Gradle
-GRADLE_VERSION="9.9.1"
+GRADLE_VERSION="9.9.2"
 GRADLE_URL="https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip"
 GRADLE_ARCHIVE="$(basename $GRADLE_URL)"
 
