@@ -4,8 +4,10 @@ set -exuo pipefail
 
 cd "${0%/*}"
 
+# Load version information
+. ./versions
+
 # JDK
-JDK_VERSION="21.0.13.1+2"
 IMAGE_TYPE="jdk"
 OS="linux"
 ARCHITECTURE="x64"
@@ -19,7 +21,6 @@ cd tmp
 cd ..
 
 # Groovy
-GROOVY_VERSION="6.0.0"
 GROOVY_URL="https://groovy.jfrog.io/artifactory/dist-release-local/groovy-zips/apache-groovy-binary-${GROOVY_VERSION}.zip"
 GROOVY_ARCHIVE="$(basename $GROOVY_URL)"
 
@@ -28,7 +29,6 @@ cd tmp
 cd ..
 
 # Gradle
-GRADLE_VERSION="9.9.2"
 GRADLE_URL="https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip"
 GRADLE_ARCHIVE="$(basename $GRADLE_URL)"
 
@@ -37,7 +37,6 @@ cd tmp
 cd ..
 
 # Maven
-MVN_VERSION="3.10.1"
 MAVEN_URL="https://dlcdn.apache.org/maven/maven-3/${MVN_VERSION}/binaries/apache-maven-${MVN_VERSION}-bin.tar.gz"
 MAVEN_ARCHIVE="$(basename $MAVEN_URL)"
 
@@ -46,7 +45,6 @@ cd tmp
 cd ..
 
 # Ant
-ANT_VERSION="1.10.18"
 ANT_URL="https://dlcdn.apache.org//ant/binaries/apache-ant-${ANT_VERSION}-bin.tar.gz"
 ANT_ARCHIVE="$(basename $ANT_URL)"
 
@@ -79,4 +77,4 @@ buildah config --env PATH=/java/jdk/bin:/java/groovy/bin:/java/gradle/bin:/java/
 buildah config --author "Alexander Veit" $CONT
 buildah config --label commit=$(git describe --always --tags --dirty=-dirty) $CONT
 
-buildah commit --rm $CONT localhost/java-toolchain:21
+buildah commit --rm $CONT localhost/java-toolchain:${TAG_VERSION}
