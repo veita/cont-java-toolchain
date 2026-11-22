@@ -1,12 +1,18 @@
 #!/bin/bash
 
-set -ex
+set -exuo pipefail
 
 export DEBIAN_FRONTEND=noninteractive
 
 apt-get update -qy
 apt-get upgrade -qy
-apt-get install -qy git git-lfs mc
+apt-get install -qy git git-lfs mc binutils lsof procps jattach
+
+# add custom trusted CA certificates
+if ls /setup/trusted-ca-certificates/*.crt &> /dev/null ; then
+    cp /setup/trusted-ca-certificates/*.crt /usr/local/share/ca-certificates/
+    /usr/sbin/update-ca-certificates
+fi
 
 source /etc/profile
 
@@ -15,6 +21,13 @@ mkdir -p /java/tmp
 tar -C /java/tmp -xzf /java/jdk.tar.gz
 mv /java/tmp/* /java/jdk
 rm /java/jdk.tar.gz
+rmdir /java/tmp
+
+# install Groovy
+mkdir -p /java/tmp
+unzip /java/groovy.zip -d /java/tmp
+mv /java/tmp/* /java/groovy
+rm /java/groovy.zip
 rmdir /java/tmp
 
 # install Gradle
@@ -38,6 +51,7 @@ mv /java/tmp/* /java/ant
 rm /java/ant.tar.gz
 rmdir /java/tmp
 
+java -Xshare:dump
 
 # cleanup
 source /setup/cleanup-image.sh
